@@ -1,25 +1,20 @@
 import './App.css'
-import { posts } from './assets/data/examplePosts'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './Pages/Home/Home'
+import Post from './Pages/Post/Post'
 
 function App() {
 
   return (
-    <>
-      <h1>Blog</h1>
-      <div className="blog-container">
-        {posts.map((post) => (
-          <div key={post.id} className="blog-card">
-            <img className='blog-card-img' src={post.img} alt={post.title} />
-            <div className="blog-card-content">
-              <h2 className='blog-card-title'>{post.title}</h2>
-              <h3 className='blog-card-subtitle'>{post.subtitle}</h3>
-              <p className='blog-card-link'>Leer más</p>
-            </div>
 
-          </div>
-        ))}
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="/:slug" element={<Post />} />
+      </Routes>
+      {/* <Footer /> */}
+    </BrowserRouter>
   )
 }
 
