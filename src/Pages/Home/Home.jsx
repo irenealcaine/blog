@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { posts } from '../../assets/data/examplePosts'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import TextEditor from '../../assets/Components/TextEditor/TextEditor'
 
 const Home = () => {
+
   return (
     <>
       <div className="blog-container">
@@ -15,6 +17,7 @@ const Home = () => {
         ))}
         git-link-web
       </div>
+      <TextEditor />
     </>
   )
 }
