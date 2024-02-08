@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config';
 
@@ -34,7 +34,10 @@ const Post = () => {
 
   return (
     <div>
-      <p>{post?.date}</p>
+      <header>
+        <Link to={'/'}>../</Link>
+        <p>{post?.date}</p>
+      </header>
       <h1>{post?.title}</h1>
       <div dangerouslySetInnerHTML={myHTML} />
 

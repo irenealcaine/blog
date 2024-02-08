@@ -11,3 +11,21 @@ body{
   min-height: 100vh;
   padding: 50px;
 }
+
+a{
+  color:lime
+}
+
+
+h1{
+  font-size: 50px;
+}
+h2{
+  font-size: 35px;
+}
+h3{
+  font-size: 28px;
+}
+p, blockquote, li{
+  font-size: 18px;
+}
