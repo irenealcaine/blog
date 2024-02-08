@@ -7,6 +7,8 @@ import { collection, addDoc } from "firebase/firestore";
 const TextEditor = () => {
 
   const [value, setValue] = useState('');
+  const [titleValue, setTitleValue] = useState('');
+  const [slugValue, setSlugValue] = useState('');
 
   const modules = {
     toolbar: [
@@ -28,7 +30,9 @@ const TextEditor = () => {
     console.log('Intentando enviar a Firestore');
     try {
       await addDoc(collection(db, "posts"), {
-        content: value
+        title: titleValue,
+        slug: slugValue,
+        content: value,
       });
       console.log('Post guardado en Firestore');
       setValue('');
@@ -39,6 +43,20 @@ const TextEditor = () => {
 
   return (
     <div>
+      <input
+        type="text"
+        placeholder='Título'
+        value={titleValue}
+        onChange={(e) => setTitleValue(e.target.value)}
+      />
+
+      <input
+        type="text"
+        placeholder='Slug'
+        value={slugValue}
+        onChange={(e) => setSlugValue(e.target.value)}
+      />
+
       <ReactQuill
         theme="snow"
         modules={modules}
@@ -47,6 +65,8 @@ const TextEditor = () => {
         onChange={setValue} />
 
       <button onClick={handleSubmit}>Enviar</button>
+
+
     </div>
   )
 }
