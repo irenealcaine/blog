@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { db } from '../../../Firebase/firebase-config';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 const TextEditor = () => {
 
@@ -27,14 +27,15 @@ const TextEditor = () => {
   ]
 
   const handleSubmit = async () => {
-    console.log('Intentando enviar a Firestore');
+    // console.log('Intentando enviar a Firestore');
     try {
       await addDoc(collection(db, "posts"), {
         title: titleValue,
         slug: slugValue,
         content: value,
+        date: Timestamp.now().toDate().toLocaleDateString()
       });
-      console.log('Post guardado en Firestore');
+      // console.log('Post guardado en Firestore');
       setValue('');
     } catch (error) {
       console.error('Error al guardar el post:', error);

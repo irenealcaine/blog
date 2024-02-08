@@ -3,7 +3,7 @@ import { posts } from '../../assets/data/examplePosts'
 import './Home.css'
 import { Link } from 'react-router-dom'
 import TextEditor from '../../assets/Components/TextEditor/TextEditor'
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, Timestamp } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config'
 
 const Home = () => {
@@ -27,9 +27,11 @@ const Home = () => {
       let list = [];
       snapShot.docs.forEach(
         (doc) => {
-          list.push({ ...doc.data() });
+          list.push({
+            id: doc.id,
+            ...doc.data()
+          });
           setData(list);
-          // console.log(data)
         },
         (error) => {
           console.log(error);
@@ -41,7 +43,6 @@ const Home = () => {
       unsub();
     };
   }, []);
-
 
   return (
     <>

@@ -1,16 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { posts } from '../../assets/data/examplePosts';
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from '../../Firebase/firebase-config';
 
 const Post = () => {
   const { slug } = useParams();
-  const postDetails = posts.find((post) => post.slug === slug);
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const q = query(collection(db, "posts"), where("slug", "==", slug));
+        const querySnapshot = await getDocs(q);
+        const fetchedPost = querySnapshot.docs[0]?.data();
+
+        if (fetchedPost) {
+          setPost({ id: querySnapshot.docs[0].id, ...fetchedPost });
+          // console.log('va')
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (slug) {
+      fetchPost();
+    }
+  }, [slug]);
+
+  const myHTML = {
+    __html: post?.content
+  };
+
 
   return (
     <div>
-      <h1>{postDetails.title}</h1>
+      <p>{post?.date}</p>
+      <h1>{post?.title}</h1>
+      <div dangerouslySetInnerHTML={myHTML} />
+
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;
