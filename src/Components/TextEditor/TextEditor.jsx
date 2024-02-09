@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { db } from '../../Firebase/firebase-config';
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const TextEditor = () => {
 
@@ -45,6 +45,7 @@ const TextEditor = () => {
 
   return (
     <div>
+      <Link to={'/'}>../</Link>
       <input
         type="text"
         placeholder='Título'

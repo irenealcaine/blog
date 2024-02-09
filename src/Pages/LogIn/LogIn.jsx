@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -21,6 +21,7 @@ const LogIn = () => {
 
   return (
     <div>
+      <Link to={'/'}>../</Link>
       <form onSubmit={handleLogin}>
         <input
           type="email"
