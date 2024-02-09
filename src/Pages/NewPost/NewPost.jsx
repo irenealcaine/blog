@@ -1,5 +1,5 @@
 import React from 'react'
-import TextEditor from '../../assets/Components/TextEditor/TextEditor'
+import TextEditor from '../../Components/TextEditor/TextEditor'
 
 const NewPost = () => {
   return (

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home/Home'
 import Post from './Pages/Post/Post'
 import NotFound from './Pages/NotFound/NotFound'
-import Footer from './assets/Components/Footer/Footer'
+import Footer from './Components/Footer/Footer'
 import LogIn from './Pages/LogIn/LogIn'
 import NewPost from './Pages/NewPost/NewPost'
 

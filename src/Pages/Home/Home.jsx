@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { posts } from '../../assets/data/examplePosts'
 import './Home.css'
 import { Link } from 'react-router-dom'
-import TextEditor from '../../assets/Components/TextEditor/TextEditor'
+import TextEditor from '../../Components/TextEditor/TextEditor'
 import { collection, deleteDoc, doc, onSnapshot, Timestamp } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config'
 
