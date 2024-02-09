@@ -1,6 +1,10 @@
 .footer{
   position: absolute;
   bottom: 0;
+  left:0;
+  width: 100%;
+  padding: 10px 50px;
+  background-color: #0003;
   ul{
     display: flex;
     justify-content: space-around;

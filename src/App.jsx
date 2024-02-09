@@ -10,17 +10,18 @@ import NewPost from './Pages/NewPost/NewPost'
 function App() {
 
   return (
-
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="/:slug" element={<Post />} />
-        <Route path="/log-in" element={<LogIn />} />
-        <Route path="/new-post" element={<NewPost />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/:slug" element={<Post />} />
+          <Route path="/log-in" element={<LogIn />} />
+          <Route path="/new-post" element={<NewPost />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   )
 }
 
