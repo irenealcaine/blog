@@ -6,21 +6,25 @@ import NotFound from './Pages/NotFound/NotFound'
 import Footer from './Components/Footer/Footer'
 import LogIn from './Pages/LogIn/LogIn'
 import NewPost from './Pages/NewPost/NewPost'
+import ProtectedRoute from './Components/ProtectedRoute'
+import { AuthContextProvider } from './Context/AuthContext'
 
 function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="/:slug" element={<Post />} />
-          <Route path="/log-in" element={<LogIn />} />
-          <Route path="/new-post" element={<NewPost />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="/:slug" element={<Post />} />
+            <Route path="/log-in" element={<LogIn />} />
+            <Route path="/new-post" element={<ProtectedRoute><NewPost /></ProtectedRoute>} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </AuthContextProvider>
     </div>
   )
 }
