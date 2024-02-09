@@ -3,12 +3,14 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { db } from '../../Firebase/firebase-config';
 import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 const TextEditor = () => {
 
   const [value, setValue] = useState('');
   const [titleValue, setTitleValue] = useState('');
   const [slugValue, setSlugValue] = useState('');
+  const navigate = useNavigate()
 
   const modules = {
     toolbar: [
@@ -27,7 +29,6 @@ const TextEditor = () => {
   ]
 
   const handleSubmit = async () => {
-    // console.log('Intentando enviar a Firestore');
     try {
       await addDoc(collection(db, "posts"), {
         title: titleValue,
@@ -35,8 +36,8 @@ const TextEditor = () => {
         content: value,
         date: Timestamp.now().toDate().toLocaleDateString()
       });
-      // console.log('Post guardado en Firestore');
       setValue('');
+      navigate('/')
     } catch (error) {
       console.error('Error al guardar el post:', error);
     }
