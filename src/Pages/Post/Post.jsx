@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config';
 
 const Post = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const [redirectToErrorPage, setRedirectToErrorPage] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -16,16 +17,23 @@ const Post = () => {
 
         if (fetchedPost) {
           setPost({ id: querySnapshot.docs[0].id, ...fetchedPost });
-          // console.log('va')
+        } else {
+          console.log('No hay post con este slug')
+          setRedirectToErrorPage(true);
         }
       } catch (error) {
         console.error(error);
+        setRedirectToErrorPage(true);
       }
     };
     if (slug) {
       fetchPost();
     }
   }, [slug]);
+
+  if (redirectToErrorPage) {
+    return <Navigate to="/404" replace />;
+  }
 
   const myHTML = {
     __html: post?.content

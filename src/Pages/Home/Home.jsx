@@ -52,11 +52,7 @@ const Home = () => {
           <div key={post.id} className="blog-card">
             <Link to={`/${post.slug}`}><h2 className="blog-card-slug">/{post.slug}</h2></Link>
           </div>
-          // <h2 key={post.id} className="blog-card">/{post.slug}</h2>
         ))}
-
-
-        git-link-web
       </div>
       <TextEditor />
     </>
