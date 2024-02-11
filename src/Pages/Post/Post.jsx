@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config';
+import './Post.css'
 
 const Post = () => {
   const { slug } = useParams();
@@ -41,13 +42,16 @@ const Post = () => {
 
 
   return (
-    <div>
+    <div className='post'>
       <header>
         <Link to={'/'}>../</Link>
         <p>{post?.date}</p>
       </header>
-      <h1>{post?.title}</h1>
-      <div dangerouslySetInnerHTML={myHTML} />
+      <div className="post-content">
+        <h1>{post?.title}</h1>
+        <div dangerouslySetInnerHTML={myHTML} />
+      </div>
+
 
     </div>
   );
