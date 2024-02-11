@@ -14,7 +14,9 @@
     &:hover {
       background-color: #ddd2;
     }
-
+    .blog-card-slug{
+        margin-bottom: 0;
+      }
     .blog-card-link {
       text-decoration: none;
       color: #007bff;
@@ -23,6 +25,10 @@
   }
 }
 
-#editor-container {
-  height: 250px;
+@media screen and (max-width: 768px) {
+  .blog-container{
+    width: 100%;
+  }
 }
+
+
