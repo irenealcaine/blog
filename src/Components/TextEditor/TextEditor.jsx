@@ -4,6 +4,8 @@ import 'react-quill/dist/quill.snow.css';
 import { db } from '../../Firebase/firebase-config';
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
+import './TextEditor.css'
+import Button from '../Button/Button';
 
 const TextEditor = () => {
 
@@ -67,8 +69,7 @@ const TextEditor = () => {
         value={value}
         onChange={setValue} />
 
-      <button onClick={handleSubmit}>Enviar</button>
-
+      <Button onClick={handleSubmit} value={'Enviar'} />
 
     </div>
   )
