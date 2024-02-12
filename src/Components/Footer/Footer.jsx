@@ -10,7 +10,7 @@ const Footer = () => {
         <li><a href="https://github.com/irenealcaine" rel="noopener noreferrer" target="_blank">/github</a></li>
         <li><a href="https://www.linkedin.com/in/irenealcaine/" rel="noopener noreferrer" target="_blank">/linkedin</a></li>
         <li><a href="https://irenealcainealvarez.es" rel="noopener noreferrer" target="_blank">/portfolio</a></li>
-        <li><Link to={'/new-post'}>/new-post</Link></li>
+        <li><Link to={'/new-post'}>/nuevo-post</Link></li>
       </ul>
     </nav>
   )
