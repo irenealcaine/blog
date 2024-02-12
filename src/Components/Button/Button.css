@@ -1,0 +1,17 @@
+.button{
+  font-family: monospace;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 2px solid lime;
+  background-color: transparent;
+  color: lime;
+  border-radius: 10px;
+  margin: 50px auto;
+  width: 100%;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover{
+    background-color: #fff2;
+  }
+}

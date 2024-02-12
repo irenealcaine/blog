@@ -46,7 +46,7 @@ const TextEditor = () => {
   };
 
   return (
-    <div>
+    <div className='text-editor'>
       <Link to={'/'}>../</Link>
       <input
         type="text"
