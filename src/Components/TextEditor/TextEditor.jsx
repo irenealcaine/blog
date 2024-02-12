@@ -6,6 +6,7 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
 import './TextEditor.css'
 import Button from '../Button/Button';
+import TextInput from '../TextInput/TextInput';
 
 const TextEditor = () => {
 
@@ -18,7 +19,7 @@ const TextEditor = () => {
     toolbar: [
       [{ 'header': [2, 3, false] }],
       ['bold', 'italic', 'underline', 'strike'],
-      ['link', 'blockquote'],
+      ['link', 'blockquote', 'code', 'code-block'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }]
     ],
   }
@@ -47,17 +48,17 @@ const TextEditor = () => {
 
   return (
     <div className='text-editor'>
+
       <Link to={'/'}>../</Link>
-      <input
-        type="text"
-        placeholder='Título'
+
+      <TextInput
+        placeholder={'Título'}
         value={titleValue}
         onChange={(e) => setTitleValue(e.target.value)}
       />
 
-      <input
-        type="text"
-        placeholder='Slug'
+      <TextInput
+        placeholder={'Slug'}
         value={slugValue}
         onChange={(e) => setSlugValue(e.target.value)}
       />
