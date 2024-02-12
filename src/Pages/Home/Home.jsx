@@ -9,6 +9,7 @@ const Home = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   function comparar(a, b) {
     if (a.date < b.date) {
@@ -24,20 +25,26 @@ const Home = () => {
     setLoading(true)
     const unsub = onSnapshot(collection(db, 'posts'), (snapShot) => {
       let list = [];
-      snapShot.docs.forEach(
-        (doc) => {
-          list.push({
-            id: doc.id,
-            ...doc.data()
-          });
-          setLoading(false)
-          list.sort(comparar)
-          setData(list);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      if (snapShot.docs.length > 0) {
+        snapShot.docs.forEach(
+          (doc) => {
+            list.push({
+              id: doc.id,
+              ...doc.data()
+            });
+            setLoading(false)
+            list.sort(comparar)
+            setData(list);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        setLoading(false)
+        setError(true)
+      }
+
     });
 
     return () => {
@@ -50,6 +57,7 @@ const Home = () => {
       <div className="blog-container">
         <h1>/blog</h1>
         {loading && <Loader />}
+        {error && <h2>error: No hay posts</h2>}
         {data.map((post) => (
           <div key={post.id} className="blog-card">
             <Link to={`/${post.slug}`}><h2 className="blog-card-slug">/{post.slug}</h2></Link>

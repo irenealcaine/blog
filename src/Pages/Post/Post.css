@@ -16,6 +16,10 @@
       }
     }
 
+    ul{
+      list-style: '- ';
+    }
+
     blockquote{
       /* display: inline-block; */
       background-color: #fff2;
