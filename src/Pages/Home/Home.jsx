@@ -1,26 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { posts } from '../../assets/data/examplePosts'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom'
-import TextEditor from '../../Components/TextEditor/TextEditor'
-import { collection, deleteDoc, doc, onSnapshot, Timestamp } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config'
 
 const Home = () => {
 
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   const docRef = doc(db, "cities", "SF");
-  //   const docSnap = await getDoc(docRef);
-
-  //   if (docSnap.exists()) {
-  //     console.log("Document data:", docSnap.data());
-  //   } else {
-  //     // docSnap.data() will be undefined in this case
-  //     console.log("No such document!");
-  //   }
-  // }, [])
+  function comparar(a, b) {
+    if (a.date < b.date) {
+      return 1;
+    }
+    if (a.date > b.date) {
+      return -1;
+    }
+    return 0;
+  }
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, 'posts'), (snapShot) => {
@@ -31,6 +27,7 @@ const Home = () => {
             id: doc.id,
             ...doc.data()
           });
+          list.sort(comparar)
           setData(list);
         },
         (error) => {
@@ -54,7 +51,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-      {/* <TextEditor /> */}
     </>
   )
 }
