@@ -29,6 +29,7 @@ const Home = () => {
           });
           list.sort(comparar)
           setData(list);
+          console.log(list)
         },
         (error) => {
           console.log(error);

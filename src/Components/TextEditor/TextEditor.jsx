@@ -37,7 +37,7 @@ const TextEditor = () => {
         title: titleValue,
         slug: slugValue,
         content: value,
-        date: Timestamp.now().toDate().toLocaleDateString()
+        date: Timestamp.now().toDate()
       });
       setValue('');
       navigate('/')

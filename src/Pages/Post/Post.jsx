@@ -45,7 +45,7 @@ const Post = () => {
     <div className='post'>
       <header>
         <Link to={'/'}>../</Link>
-        <p>{post?.date}</p>
+        <p>{post?.date?.toDate().toLocaleDateString()}</p>
       </header>
       <div className="post-content">
         <h1>{post?.title}</h1>
