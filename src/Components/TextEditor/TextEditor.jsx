@@ -27,7 +27,7 @@ const TextEditor = () => {
   const formats = [
     'header',
     'bold', 'italic', 'underline', 'strike',
-    'link', 'blockquote',
+    'link', 'blockquote', 'code', 'code-block',
     'list', 'bullet'
   ]
 
