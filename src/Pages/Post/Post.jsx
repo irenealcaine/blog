@@ -3,13 +3,16 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config';
 import './Post.css'
+import Loader from '../../Components/Loader/Loader';
 
 const Post = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [redirectToErrorPage, setRedirectToErrorPage] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const fetchPost = async () => {
       try {
         const q = query(collection(db, "posts"), where("slug", "==", slug));
@@ -17,6 +20,7 @@ const Post = () => {
         const fetchedPost = querySnapshot.docs[0]?.data();
 
         if (fetchedPost) {
+          setLoading(false)
           setPost({ id: querySnapshot.docs[0].id, ...fetchedPost });
         } else {
           console.log('No hay post con este slug')
@@ -28,6 +32,7 @@ const Post = () => {
       }
     };
     if (slug) {
+
       fetchPost();
     }
   }, [slug]);
@@ -47,6 +52,7 @@ const Post = () => {
         <Link to={'/'}>../</Link>
         <p>{post?.date?.toDate().toLocaleDateString()}</p>
       </header>
+      {loading && <Loader />}
       <div className="post-content">
         <h1>{post?.title}</h1>
         <div dangerouslySetInnerHTML={myHTML} />
