@@ -1,5 +1,15 @@
 .text-editor{
-display: flex;
-flex-direction: column;
-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+    .quill {
+      height: 250px;
+
+      .ql-container {
+        font-family: inherit;
+        font-size: inherit;
+    }
+    }
+
 }

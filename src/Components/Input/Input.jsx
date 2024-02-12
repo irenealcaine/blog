@@ -1,11 +1,11 @@
 import React from 'react'
-import './TextInput.css'
+import './Input.css'
 
-const TextInput = ({ placeholder, value, onChange }) => {
+const Input = ({ type, placeholder, value, onChange }) => {
   return (
     <input
       className='text-input'
-      type="text"
+      type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
@@ -13,4 +13,4 @@ const TextInput = ({ placeholder, value, onChange }) => {
   )
 }
 
-export default TextInput
+export default Input
