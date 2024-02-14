@@ -5,7 +5,11 @@ import { db } from '../../Firebase/firebase-config';
 import './Post.css'
 import Loader from '../../Components/Loader/Loader';
 
+import Prism from 'prismjs';
+import 'prismjs/themes/prism.css';
+
 const Post = () => {
+
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [redirectToErrorPage, setRedirectToErrorPage] = useState(false);
@@ -32,9 +36,11 @@ const Post = () => {
       }
     };
     if (slug) {
-
       fetchPost();
     }
+
+    Prism.highlightAll();
+
   }, [slug]);
 
   if (redirectToErrorPage) {
@@ -48,6 +54,7 @@ const Post = () => {
 
   return (
     <div className='post'>
+
       <header>
         <Link to={'/'}>../</Link>
         <p>{post?.date?.toDate().toLocaleDateString()}</p>
