@@ -53,7 +53,9 @@
 
     code{
       background-color: #0f04;
-      padding: 2px;
+      padding: 4px;
+      border-radius: 4px;
+      font-size: small;
     }
 
     pre{
