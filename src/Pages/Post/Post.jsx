@@ -5,8 +5,9 @@ import { db } from '../../Firebase/firebase-config';
 import './Post.css'
 import Loader from '../../Components/Loader/Loader';
 
-import Prism from 'prismjs';
-import 'prismjs/themes/prism.css';
+// import Prism from 'prismjs';
+// import 'prismjs/themes/prism.css';
+// import 'prismjs/themes/prism-tomorrow.css'
 
 const Post = () => {
 
@@ -39,7 +40,7 @@ const Post = () => {
       fetchPost();
     }
 
-    Prism.highlightAll();
+    // Prism.highlightAll();
 
   }, [slug]);
 
