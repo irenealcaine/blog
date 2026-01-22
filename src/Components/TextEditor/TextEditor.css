@@ -10,5 +10,7 @@
         font-size: inherit;
       }
     }
-
+    .submit-button {
+      margin: 50px 0 20px 0;
+    }
 }

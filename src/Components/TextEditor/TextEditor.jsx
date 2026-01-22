@@ -121,7 +121,7 @@ const TextEditor = ({ editMode = false }) => {
             value={value}
             onChange={setValue} />
 
-          <Button onClick={handleSubmit} value={editMode ? 'Actualizar' : 'Enviar'} />
+          <Button className="submit-button" onClick={handleSubmit} value={editMode ? 'Actualizar' : 'Enviar'} />
         </>
       )}
 
