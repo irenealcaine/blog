@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { Link, Navigate, useParams, useNavigate } from 'react-router-dom'
+import { getDocs, collection, query, where, deleteDoc, doc } from "firebase/firestore";
 import { db } from '../../Firebase/firebase-config';
 import './Post.css'
 import Loader from '../../Components/Loader/Loader';
+import { UserAuth } from '../../Context/AuthContext';
+import Button from '../../Components/Button/Button';
 
 // import Prism from 'prismjs';
 // import 'prismjs/themes/prism.css';
@@ -14,7 +16,21 @@ const Post = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [redirectToErrorPage, setRedirectToErrorPage] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const { user } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    if (window.confirm(`¿Estás segura de que quieres borrar el post "${post?.title}"?`)) {
+      try {
+        await deleteDoc(doc(db, "posts", post.id));
+        navigate('/');
+      } catch (error) {
+        console.error('Error al borrar el post:', error);
+        alert('Error al borrar el post');
+      }
+    }
+  };
 
   useEffect(() => {
     setLoading(true)
@@ -65,7 +81,21 @@ const Post = () => {
         <h1>{post?.title}</h1>
         <div dangerouslySetInnerHTML={myHTML} />
       </div>
-
+      
+      {user && post && (
+        <div className="post-actions">
+          <Link to={`/edit-post/${post.id}`}>
+            <Button value={'Editar post'} />
+          </Link>
+          <button 
+            onClick={handleDelete}
+            className="delete-button" 
+            title="Borrar post"
+          >
+            Borrar post
+          </button>
+        </div>
+      )}
 
     </div>
   );

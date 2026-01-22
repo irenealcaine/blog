@@ -68,6 +68,31 @@
       margin-bottom: 15px;
     }
   }
+
+  .post-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .delete-button {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: 2px solid #ff0000;
+    background-color: transparent;
+    color: #ff0000;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    &:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
